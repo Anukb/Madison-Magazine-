@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe to Madison</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <header>
+        <!-- Include the same header as in the main template -->
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Subscribe to Madison</h1>
+            <section>
+                <h2>Choose Your Subscription Plan</h2>
+                <div class="subscription-plans">
+                    <div class="subscription-plan">
+                        <h3>Monthly Plan</h3>
+                        <p>$9.99/month</p>
+                        <a href="{% url 'payment' %}?plan=monthly" class="btn">Subscribe</a>
+                    </div>
+                    <div class="subscription-plan">
+                        <h3>Yearly Plan</h3>
+                        <p>$99.99/year</p>
+                        <a href="{% url 'payment' %}?plan=yearly" class="btn">Subscribe</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Madison Online Magazine. All rights reserved.</p>
+    </footer>
+</body>
+</html>

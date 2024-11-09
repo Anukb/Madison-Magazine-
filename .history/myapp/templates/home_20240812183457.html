@@ -1,0 +1,155 @@
+ {% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madison Online Magazine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: url('https://fashionmagazine.com/wp-content/uploads/2022/12/homepage_header_desktop_v3.jpg') no-repeat center center/cover;
+            height: 80vh;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        header h1 {
+            font-family: 'Lora', serif;
+            font-size: 3em;
+            margin: 0;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-family: 'Lora', serif;
+            font-size: 2.5em;
+            color: #111;
+            margin-bottom: 20px;
+        }
+
+        article {
+            display: flex;
+            background: #f9f9f9;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        article img {
+            width: 40%;
+            height: auto;
+        }
+
+        article div {
+            padding: 20px;
+        }
+
+        article h3 {
+            font-size: 1.8em;
+            margin: 0 0 10px;
+        }
+
+        article p {
+            margin: 0 0 15px;
+        }
+
+        article a {
+            font-weight: bold;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        article a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #111;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Madison</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li>
+        </ul>
+    </nav>
+
+    <section>
+        <h2>Latest Articles</h2>
+        <article>
+            <img src="https://fashionmagazine.com/wp-content/uploads/2023/02/article1.jpg" alt="Article 1 Image">
+            <div>
+                <h3>Article Title 1</h3>
+                <p>Short summary of the article...</p>
+                <a href="#">Read more</a>
+            </div>
+        </article>
+        <article>
+            <img src="https://fashionmagazine.com/wp-content/uploads/2023/02/article2.jpg" alt="Article 2 Image">
+            <div>
+                <h3>Article Title 2</h3>
+                <p>Short summary of the article...</p>
+                <a href="#">Read more</a>
+            </div>
+        </article>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Madison Online Magazine. All rights reserved.</p>
+    </footer>
+</body>
+</html>

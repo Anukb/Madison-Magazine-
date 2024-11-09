@@ -1,0 +1,117 @@
+/* General Styles */
+body {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background: url('https://fashionmagazine.com/wp-content/uploads/2022/12/homepage_header_desktop_v3.jpg') no-repeat center center/cover;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1, h2, h3 {
+    font-family: 'Lora', serif;
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+h2 {
+    font-size: 2.5em;
+    color: #111;
+    margin-bottom: 20px;
+}
+
+article {
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    overflow: hidden;
+}
+
+article img {
+    width: 40%;
+    height: auto;
+}
+
+article div {
+    padding: 20px;
+}
+
+article h3 {
+    font-size: 1.8em;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+article p {
+    margin: 0 0 15px;
+}
+
+article a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+article a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background: #111;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 1em;
+}

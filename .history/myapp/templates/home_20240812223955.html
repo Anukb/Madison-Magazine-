@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madison</title>
+    <!-- Add your CSS and JS files here -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="{% static 'script.js' %}"></script>
+</head>
+<body>
+    <header>
+        <div class="header-nav js--header-nav is-fixed">
+            <div class="header-nav__inner">
+                <div class="nav-wrapper">
+                    <button class="hamburger js--nav-toggle" aria-label="Open navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+                <div class="brand-wrapper">
+                    <div class="brand">
+                        <a href="{% url 'home' %}" aria-label="Home">
+                            <img class="js-header-logo" src="{% static 'images/madison-logo.svg' %}" alt="Madison Logo" data-max-height="315" style="height: 315%;">
+                        </a>
+                    </div>
+                </div>
+                <div class="nav-items-wrapper">
+                    <nav class="nav-links-wrapper cdn-font--init js-cdn-font cdn-font--loaded">
+                        <ul>
+                            <li><a href="{% url 'style' %}" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-189482 menu-item-has-children">Style</a></li>
+                            <li><a href="{% url 'beauty_awards' %}" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-475299">Beauty Awards 2024</a></li>
+                            <li><a href="{% url 'more_beauty' %}" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-189488 menu-item-has-children">More Beauty</a></li>
+                            <li><a href="{% url 'the_drop' %}" class="main-menu-drop-logo menu-item menu-item-type-custom menu-item-object-custom menu-item-475301">The Drop</a></li>
+                            <li><a href="{% url 'buy_issue' %}" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-451447">Buy the Issue</a></li>
+                        </ul>
+                    </nav>
+                    <button class="header-nav__inner__cta js--search-trigger" tabindex="0" aria-label="Open Search Overlay">
+                        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20.98 20.91">
+                            <path d="M20.3 20.91L12 13.17a7.24 7.24 0 0 1-4.64 1.68A7.42 7.42 0 0 1 7.33 0a7.44 7.44 0 0 1 5.37 12.48l8.3 7.69zM7.33 1A6.39 6.39 0 0 0 1 7.42a6.39 6.39 0 0 0 6.33 6.42 6.39 6.39 0 0 0 6.33-6.42A6.39 6.39 0 0 0 7.33 1z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Welcome to Madison</h1>
+            <section>
+                <h2>Latest Articles</h2>
+                <p>Explore the latest articles on news, lifestyle, entertainment, and technology.</p>
+                <!-- Example of featured articles -->
+                <article>
+                    <h3>Article Title 1</h3>
+                    <p>Short summary of the article...</p>
+                    <a href="#">Read more</a>
+                </article>
+                <article>
+                    <h3>Article Title 2</h3>
+                    <p>Short summary of the article...</p>
+                    <a href="#">Read more</a>
+                </article>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Madison Online Magazine. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

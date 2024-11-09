@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madison Subscription</title>
+    <link rel="stylesheet" href="{% static 'css/subs.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Madison Online Magazine - Subscription</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <!-- Add more links as needed -->
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class="subscription-plans">
+            <div class="plan">
+                <h2>Monthly Subscription</h2>
+                <p>₹X per month</p>
+                <ul>
+                    <li>Access to premium content</li>
+                    <li>Personalized content recommendations</li>
+                    <li>Ad-free experience</li>
+                </ul>
+                <button>Subscribe Now</button>
+            </div>
+            <div class="plan">
+                <h2>Yearly Subscription</h2>
+                <p>₹Y per year (Z% discount)</p>
+                <ul>
+                    <li>Access to premium content</li>
+                    <li>Personalized content recommendations</li>
+                    <li>Ad-free experience</li>
+                    <li>Exclusive access to events and webinars</li>
+                </ul>
+                <button>Subscribe Now</button>
+            </div>
+            <div class="plan">
+                <h2>Premium Subscription</h2>
+                <p>₹W per month/year</p>
+                <ul>
+                    <li>All benefits of Yearly Subscription</li>
+                    <li>Detailed analytics and insights</li>
+                    <li>Exclusive access to premium content</li>
+                </ul>
+                <button>Subscribe Now</button>
+            </div>
+        </section>
+
+        <section class="user-info">
+            <h3>User Information</h3>
+            <p><strong>Name:</strong> John Doe</p>
+            <p><strong>Email:</strong> johndoe@example.com</p>
+            <div class="btn-group">
+                <button class="update">Update Profile</button>
+            </div>
+        </section>
+
+        <section class="payment-history">
+            <h3>Payment History</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Invoice</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01-Jan-2024</td>
+                        <td>₹X</td>
+                        <td>Completed</td>
+                        <td><a href="#">Download</a></td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </section>
+
+        <section class="notifications">
+            <h3>Notifications</h3>
+            <ul>
+                <li>Subscription renewal reminder - 25-Dec-2023</li>
+                <li>Payment confirmation - 01-Jan-2024</li>
+                <li>Subscription cancellation notice - 01-Feb-2024</li>
+            </ul>
+        </section>
+
+        <section class="subscription-management">
+            <h3>Subscription Management</h3>
+            <div class="btn-group">
+                <button class="update">Upgrade/Downgrade Plan</button>
+                <button class="cancel">Cancel Subscription</button>
+                <button class="renew">Renew Subscription</button>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Madison Online Magazine. All rights reserved.</p>
+    </footer>
+</body>
+</html>

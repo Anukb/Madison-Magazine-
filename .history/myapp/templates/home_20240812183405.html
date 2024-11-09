@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madison Online Magazine</title>
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Madison</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="#">Style</a></li>
+                <li><a href="#">Beauty</a></li>
+                <li><a href="#">The Drop</a></li>
+                <li><a href="#">Buy the Issue</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <h2>Latest Articles</h2>
+        <article>
+            <!-- Replace 'path/to/article1-image.jpg' with the actual path to your image -->
+            <img src="{% static 'images/article1-image.jpg' %}" alt="Article 1 Image">
+            <div>
+                <h3>Article Title 1</h3>
+                <p>Short summary of the article...</p>
+                <a href="#">Read more</a>
+            </div>
+        </article>
+        <article>
+            <!-- Replace 'path/to/article2-image.jpg' with the actual path to your image -->
+            <img src="{% static 'images/article2-image.jpg' %}" alt="Article 2 Image">
+            <div>
+                <h3>Article Title 2</h3>
+                <p>Short summary of the article...</p>
+                <a href="#">Read more</a>
+            </div>
+        </article>
+    </section>
+    <footer>
+        <p>&copy; 2024 Madison Online Magazine. All rights reserved.</p>
+    </footer>
+</body>
+</html>

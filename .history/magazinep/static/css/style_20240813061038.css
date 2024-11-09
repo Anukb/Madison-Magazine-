@@ -1,0 +1,59 @@
+/* Image container covering half the screen */
+.image-container {
+    position: relative;
+    height: 50vh; /* Adjust height as needed */
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    background: rgba(0, 0, 0, 0.5); /* Optional: dark overlay for better text visibility */
+}
+
+.welcome-message {
+    color: #fff; /* Text color */
+    text-align: center;
+    margin-bottom: 20px; /* Space between welcome message and nav links */
+}
+
+.overlay-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.overlay-nav a {
+    color: #fff; /* Text color */
+    text-decoration: none;
+    font-size: 24px; /* Adjust font size as needed */
+    font-weight: bold;
+}
+
+.overlay-nav a:hover {
+    text-decoration: underline;
+}
+
+/* Ensure other elements are not hidden by the image */
+main {
+    position: relative;
+    z-index: 1;
+}

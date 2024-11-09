@@ -1,0 +1,126 @@
+/*
+WP Gif Player, an easy to use GIF Player for Wordpress
+Copyright (C) 2016 David Bedenknecht (http://www.sketchmouse.com/page/contact)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+ .gif_wrap .play_gif {
+    visibility: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 3.5em;
+    width: 3.5em;
+    text-align: center;
+    overflow: hidden;
+    background: #222;
+    line-height: 3.2em;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 3em;
+    opacity: .9;
+    border: 5px solid #fff;
+    margin-left: -1.75em;
+    margin-top: -1.75em;
+}
+.play_gif:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1.25em;
+}
+.gif_wrap {
+    position: relative;
+    margin:0 0 25px 0;
+}
+.gif_link_wrap {
+    position: absolute;
+    z-index: 900;
+    height: 100%;
+    width: 100%;
+}
+.gif_spinner{
+    z-index: -1;
+    position: relative;
+}
+.gif_spinner{
+    z-index: 3 !important;
+}
+img._showing{
+    height: auto;
+    width: 100%;
+    max-width: 100%;
+}
+img._hidden{
+    visibility: hidden;
+}
+@media (max-width: 767px){
+    .gif_wrap .play_gif {
+        top: 50%;
+        height: 2.6em;
+        width: 2.6em;
+        line-height: 2.3em;
+        font-size: 1.2em;
+        margin-left: -1.3em;
+        margin-top: -1.3em;
+        border: 4px solid #fff;
+    }
+}
+.wpgp-width100 {
+    max-width: 100px;
+}
+span.play_gif.wpgp-width100, span.play_gif.wpgp-width150, span.play_gif.wpgp-width200 {
+    line-height: 2.3em;
+    font-size: 1.2em;
+    height: 2.6em;
+    margin-top: -1.3em;
+    width: 2.6em;
+    margin-left: -1.3em;
+    border: 4px solid #fff;
+}
+.wpgp-width150 {
+    max-width: 150px;
+}
+.wpgp-width200 {
+    max-width: 200px;
+}
+.wpgp-width250 {
+    max-width: 250px;
+}
+.wpgp-width300 {
+    max-width: 300px;
+}
+.wpgp-width350 {
+    max-width: 350px;
+}
+.wpgp-width400 {
+    max-width: 400px;
+}
+.wpgp-width450 {
+    max-width: 450px;
+}
+.wpgp-width500 {
+    max-width: 500px;
+}
+.wpgp-width550 {
+    max-width: 550px;
+}
+.wpgp-width600 {
+    max-width: 600px;
+}
+@charset "UTF-8";.wp-block-archives-dropdown label{display:block}.wp-block-audio{margin:0 0 1em}.wp-block-audio figcaption{margin-top:.5em;margin-bottom:1em}.wp-block-audio audio{width:100%;min-width:300px}.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;cursor:pointer;display:inline-block;font-size:1.125em;padding:calc(.667em + 2px) calc(1.333em + 2px);text-align:center;text-decoration:none;word-break:break-word;box-sizing:border-box}.wp-block-button__link:active,.wp-block-button__link:focus,.wp-block-button__link:hover,.wp-block-button__link:visited{color:#fff}.wp-block-button__link.aligncenter{text-align:center}.wp-block-button__link.alignright{text-align:right}.wp-block-buttons>.wp-block-button.has-custom-width{max-width:none}.wp-block-buttons>.wp-block-button.has-custom-width .wp-block-button__link{width:100%}.wp-block-buttons>.wp-block-button.has-custom-font-size .wp-block-button__link{font-size:inherit}.wp-block-buttons>.wp-block-button.wp-block-button__width-25{width:calc(25% - var(--wp--style--block-gap, .5em)*0.75)}.wp-block-buttons>.wp-block-button.wp-block-button__width-50{width:calc(50% - var(--wp--style--block-gap, .5em)*0.5)}.wp-block-buttons>.wp-block-button.wp-block-button__width-75{width:calc(75% - var(--wp--style--block-gap, .5em)*0.25)}.wp-block-buttons>.wp-block-button.wp-block-button__width-100{width:100%;flex-basis:100%}.wp-block-buttons.is-vertical>.wp-block-button.wp-block-button__width-25{width:25%}.wp-block-buttons.is-vertical>.wp-block-button.wp-block-button__width-50{width:50%}.wp-block-buttons.is-vertical>.wp-block-button.wp-block-button__width-75{width:75%}.wp-block-button.is-style-squared,.wp-block-button__link.wp-block-button.is-style-squared{border-radius:0}.wp-block-button.no-border-radius,.wp-block-button__link.no-border-radius{border-radius:0!important}.is-style-outline>:where(.wp-block-button__link),:where(.wp-block-button__link).is-style-outline{border:2px solid;padding:.667em 1.333em}.is-style-outline>.wp-block-button__link:not(.has-text-color),.wp-block-button__link.is-style-outline:not(.has-text-color){color:currentColor}.is-style-outline>.wp-block-button__link:not(.has-background),.wp-block-button__link.is-style-outline:not(.has-background){background-color:transparent}.wp-block-buttons.is-vertical{flex-direction:column}.wp-block-buttons.is-vertical>.wp-block-button:last-child{margin-bottom:0}.wp-block-buttons>.wp-block-button{display:inline-block;margin:0}.wp-block-buttons.is-content-justification-left{justify-content:flex-start}.wp-block-buttons.is-content-justification-left.is-vertical{align-items:flex-start}.wp-block-buttons.is-content-justification-center{justify-content:center}.wp-block-buttons.is-content-justification-center.is-vertical{align-items:center}.wp-block-buttons.is-content-justification-right{justify-content:flex-end}.wp-block-buttons.is-content-justification-right.is-vertical{align-items:flex-end}.wp-block-buttons.is-content-justification-space-between{justify-content:space-between}.wp-block-buttons.aligncenter{text-align:center}.wp-block-buttons:not(.is-content-justification-space-between,.is-content-justification-right,.is-content-justification-left,.is-content-justification-center) .wp-block-button.aligncenter{margin-left:auto;margin-right:auto;width:100%}.wp-block-button.aligncenter,.wp-block-calendar{text-align:center}.wp-block-calendar tbody td,.wp-block-calendar th{padding:.25em;border:1px solid #ddd}.wp-block-calendar tfoot td{border:none}.wp-block-calendar table{width:100%;border-collapse:collapse}.wp-block-calendar table th{font-weight:400;background:#ddd}.wp-block-calendar a{text-decoration:underline}.wp-block-calendar table caption,.wp-block-calendar table tbody{color:#40464d}.wp-block-categories.alignleft{margin-right:2em}.wp-block-categories.alignright{margin-left:2em}.wp-block-code code{display:block;white-space:pre-wrap;overflow-wrap:break-word}.wp-block-columns{display:flex;margin-bottom:1.75em;box-sizing:border-box;flex-wrap:wrap}@media (min-width:782px){.wp-block-columns{flex-wrap:nowrap}}.wp-block-columns:where(.has-background){padding:1.25em 2.375em}.wp-block-columns.are-vertically-aligned-top{align-items:flex-start}.wp-block-columns.are-vertically-aligned-center{align-items:center}.wp-block-columns.are-vertically-aligned-bottom{align-items:flex-end}@media (max-width:599px){.wp-block-columns:not(.is-not-stacked-on-mobile)>.wp-block-column{flex-basis:100%!important}}@media (min-width:600px) and (max-width:781px){.wp-block-columns:not(.is-not-stacked-on-mobile)>.wp-block-column:not(:only-child){flex-basis:calc(50% - var(--wp--style--block-gap, 2em)/2)!important;flex-grow:0}.wp-block-columns:not(.is-not-stacked-on-mobile)>.wp-block-column:nth-child(2n){margin-left:var(--wp--style--block-gap,2em)}}@media (min-width:782px){.wp-block-columns:not(.is-not-stacked-on-mobile)>.wp-block-column{flex-basis:0;flex-grow:1}.wp-block-columns:not(.is-not-stacked-on-mobile)>.wp-block-column[style*=flex-basis]{flex-grow:0}.wp-block-columns:not(.is-not-stacked-on-mobile)>.wp-block-column:not(:first-child){margin-left:var(--wp--style--block-gap,2em)}}.wp-block-columns.is-not-stacked-on-mobile{flex-wrap:nowrap}.wp-block-columns.is-not-stacked-on-mobile>.wp-block-column{flex-basis:0;flex-grow:1}.wp-block-columns.is-not-stacked-on-mobile>.wp-block-column[style*=flex-basis]{flex-grow:0}.wp-block-columns.is-not-stacked-on-mobile>.wp-block-column:not(:first-child){margin-left:var(--wp--style--block-gap,2em)}.wp-block-column{flex-grow:1;min-width:0;word-break:break-word;overflow-wrap:break-word}.wp-block-column.is-vertically-aligned-top{align-self:flex-start}.wp-block-column.is-vertically-aligned-center{align-self:center}.wp-block-column.is-vertically-aligned-bottom{align-self:flex-end}.wp-block-column.is-vertically-aligned-bottom,.wp-block-column.is-vertically-aligned-center,.wp-block-column.is-vertically-aligned-top{width:100%}.wp-block-cover,.wp-block-cover-image{position:relative;background-size:cover;background-position:50%;min-height:430px;width:100%;display:flex;justify-content:center;align-items:center;padding:1em;box-sizing:border-box}.wp-block-cover-image.has-parallax,.wp-block-cover.has-parallax{background-attachment:fixed}@supports (-webkit-overflow-scrolling:touch){.wp-block-cover-image.has-parallax,.wp-block-cover.has-parallax{background-attachment:scroll}}@media (prefers-reduced-motion:reduce){.wp-block-cover-image.has-parallax,.wp-block-cover.has-parallax{background-attachment:scroll}}.wp-block-cover-image.is-repeated,.wp-block-cover.is-repeated{background-repeat:repeat;background-size:auto}.wp-block-cover-image.has-background-dim:not([class*=-background-color]),.wp-block-cover-image .has-background-dim:not([class*=-background-color]),.wp-block-cover.has-background-dim:not([class*=-background-color]),.wp-block-cover .has-background-dim:not([class*=-background-color]){background-color:#000}.wp-block-cover-image .has-background-dim.has-background-gradient,.wp-block-cover .has-background-dim.has-background-gradient{background-color:transparent}.wp-block-cover-image.has-background-dim:before,.wp-block-cover.has-background-dim:before{content:"";background-color:inherit}.wp-block-cover-image.has-background-dim:not(.has-background-gradient):before,.wp-block-cover-image .wp-block-cover__background,.wp-block-cover-image .wp-block-cover__gradient-background,.wp-block-cover.has-background-dim:not(.has-background-gradient):before,.wp-block-cover .wp-block-cover__background,.wp-block-cover .wp-block-cover__gradient-background{position:absolute;top:0;left:0;bottom:0;right:0;z-index:1;opacity:.5}.wp-block-cover-image.has-background-dim.has-background-dim-10 .wp-block-cover__gradient-background,.wp-block-cover-image.has-background-dim.has-background-dim-10:not(.has-background-gradient):before,.wp-block-cover.has-background-dim.has-background-dim-10 .wp-block-cover__gradient-background,.wp-block-cover.has-background-dim.has-background-dim-10:not(.has-background-gradient):before{opacity:.1}.wp-block-cover-image.has-background-dim.has-background-dim-20 .wp-block-cover__gradient-background,.wp-block-cover-image.has-background-dim.has-background-dim-20:not(.has-background-gradient):before,.wp-block-cover.has-background-dim.has-background-dim
