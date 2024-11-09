@@ -1,11 +1,5 @@
-Django==4.2.7          # Replace with your version of Django
-gunicorn==20.1.1       # For production WSGI server
-psycopg2==2.9.7        # If using PostgreSQL (optional, if you use SQLite, this isn't needed)
-django-environ==0.8.2  # For managing environment variables
+certifi==2024.8.30
+charset-normalizer==3.4.0
+idna==3.10
 requests==2.32.3
 urllib3==2.2.3
-idna==3.10
-charset-normalizer==3.4.0
-certifi==2024.8.30
-social-auth-core==5.0.0
-social-auth-app-django==5.0.0
