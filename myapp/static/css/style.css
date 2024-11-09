@@ -1,0 +1,281 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column; /* Change to column to stack elements */
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    margin: 0;
+}
+
+/* Header styling */
+header {
+    position: relative;
+}
+
+.header-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent background for better text visibility */
+}
+
+.header-nav__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px; /* Adjust padding as needed */
+}
+
+.brand img {
+    height: 150px; /* Reduced height for the logo */
+}
+
+/* Main section styling */
+main {
+    flex: 1; /* Allow main to grow and fill available space */
+    padding: 20px; /* Optional padding for main content */
+}
+
+/* Footer Styling */
+footer {
+    width: 100%;
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .header-nav__inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .brand img {
+        height: 100px; /* Further reduced height for smaller screens */
+    }
+}
+
+/* Image container styling */
+.image-container {
+    position: relative;
+    height: 300px; /* Adjust height as needed for the banner */
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5); /* Optional: dark overlay for better text visibility */
+}
+
+.overlay-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 50px; /* Increased space between navigation items */
+}
+
+.overlay-nav a {
+    color: #fff; /* Text color */
+    text-decoration: none;
+    font-size: 24px; /* Adjust font size as needed */
+    font-weight: bold;
+    display: flex;
+    align-items: center; /* Align icon and text */
+    gap: 2px; /* Space between icon and text */
+}
+
+.overlay-nav a:hover {
+    text-decoration: underline;
+}
+
+/* Container styling */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Card styling */
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-img {
+    width: 100%;
+    height: 200px; /* Adjust as needed */
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.card h3 {
+    margin: 0 0 10px;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.card p {
+    font-size: 1em;
+    color: #666;
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments for cards */
+@media (min-width: 600px) {
+    .card {
+        flex-direction: row;
+    }
+
+    .card-img {
+        width: 40%;
+        height: auto;
+    }
+
+    .card-content {
+        width: 60%;
+    }
+}
+
+/* Overlay navigation styling */
+.overlay-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 50px; /* Increased space between navigation items */
+}
+
+.overlay-nav a {
+    color: #fff; /* Text color */
+    text-decoration: none;
+    font-size: 24px; /* Adjust font size as needed */
+    font-weight: bold;
+    display: flex;
+    align-items: center; /* Align icon and text */
+    gap: 2px; /* Space between icon and text */
+}
+
+.overlay-nav a:hover {
+    text-decoration: underline;
+}
+
+.login-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px 0;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+a {
+    display: block;
+    margin-top: 20px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Footer Styling */
+footer {
+    width: 100%;
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+}

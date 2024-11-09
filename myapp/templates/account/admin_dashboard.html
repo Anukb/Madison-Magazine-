@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        /* Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            display: flex;
+            background-color: #1e1e2f;
+            color: #f0f0f5;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #2b2b3a;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+        }
+        .sidebar h2 {
+            color: #f0f0f5;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            width: 100%;
+            padding-left: 0;
+        }
+        .sidebar ul li {
+            width: 100%;
+        }
+        .sidebar ul li a {
+            display: block;
+            padding: 15px 20px;
+            color: #f0f0f5;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .sidebar ul li a:hover, .sidebar ul li a.active {
+            background-color: #4f5bd5;
+        }
+
+        /* Main Content */
+        .main-content, #add-category-form, #view-categories, #edit-category-form {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+        .main-content h1, #add-category-form h1, #view-categories h1, #edit-category-form h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .main-content p {
+            font-size: 1.1rem;
+            color: #b3b3cc;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #f0f0f5;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            background-color: #4f5bd5;
+            color: #f0f0f5;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .submit-btn:hover {
+            background-color: #3a3a4f;
+        }
+
+        /* Table Styles */
+        .category-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+            color: #f0f0f5;
+        }
+        .category-table th, .category-table td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        .category-table th {
+            background-color: #333;
+        }
+        .category-table td .action-btn {
+            padding: 5px 10px;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: inline-block; /* Make buttons inline */
+            margin-right: 5px; /* Space between buttons */
+        }
+        .edit-btn {
+            background-color: #4f5bd5;
+        }
+        .delete-btn {
+            background-color: #d54f4f;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <ul>
+            <li><a href="javascript:void(0)" class="active" onclick="loadContent('dashboard')">Dashboard</a></li>
+            <li><a href="javascript:void(0)" onclick="loadContent('addCategory')">Add Category</a></li>
+            <li><a href="javascript:void(0)" onclick="loadContent('viewCategories')">View Categories</a></li>
+            <li><a href="#">Content Management</a></li>
+            <li><a href="#">Analytics</a></li>
+            <li><a href="#">Settings</a></li>
+            <li>
+                <div class="logout-form">
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="submit-btn">Logout</button>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="main-content">
+        <h1>Welcome to the Admin Dashboard</h1>
+        <p>You are successfully logged in as an admin.</p>
+    </div>
+
+    <!-- Add Category Form -->
+    <div id="add-category-form" style="display: none;">
+        <h1>Add New Category</h1>
+        <form method="post" action="{% url 'add_category' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="category_name">Category Name:</label>
+                <input type="text" id="category_name" name="category_name" required>
+            </div>
+            <div class="form-group">
+                <label for="category_description">Description:</label>
+                <textarea id="category_description" name="category_description" rows="4"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Add Category</button>
+        </form>
+    </div>
+
+    <!-- Edit Category Form -->
+    <div id="edit-category-form" style="display: none;">
+        <h1>Edit Category</h1>
+        <form method="post" id="edit-form" onsubmit="updateCategory(event)">
+            {% csrf_token %}
+            <input type="hidden" id="edit_category_id" name="category_id">
+            <div class="form-group">
+                <label for="edit_category_name">Category Name:</label>
+                <input type="text" id="edit_category_name" name="category_name" required>
+            </div>
+            <div class="form-group">
+                <label for="edit_category_description">Description:</label>
+                <textarea id="edit_category_description" name="category_description" rows="4"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Update Category</button>
+        </form>
+    </div>
+
+    <!-- View Categories Table -->
+    <div id="view-categories" style="display: none;">
+        <h1>Category List</h1>
+        <table class="category-table">
+            <thead>
+                <tr>
+                    <th>Category Name</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category in categories %}
+                <tr id="category-row-{{ category.id }}">
+                    <td>{{ category.name }}</td>
+                    <td>{{ category.description }}</td>
+                    <td>
+                        <button class="action-btn edit-btn" onclick="editCategory('{{ category.id }}', '{{ category.name|escapejs }}', '{{ category.description|escapejs }}')">Edit</button>
+                        <button class="action-btn delete-btn" onclick="deleteCategory('{{ category.id }}')">Delete</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function loadContent(section) {
+            // Hide all sections initially
+            document.getElementById("main-content").style.display = "none";
+            document.getElementById("add-category-form").style.display = "none";
+            document.getElementById("view-categories").style.display = "none";
+            document.getElementById("edit-category-form").style.display = "none";
+    
+            // Show the selected section
+            if (section === "addCategory") {
+                document.getElementById("add-category-form").style.display = "block";
+            } else if (section === "dashboard") {
+                document.getElementById("main-content").style.display = "block";
+            } else if (section === "viewCategories") {
+                document.getElementById("view-categories").style.display = "block";
+            }
+        }
+    
+        function editCategory(id, name, description) {
+            // Populate the edit form with the selected category's details
+            document.getElementById("edit_category_id").value = id;
+            document.getElementById("edit_category_name").value = name;
+            document.getElementById("edit_category_description").value = description;
+    
+            // Show the edit form and hide the view categories section
+            document.getElementById("edit-category-form").style.display = "block";
+            document.getElementById("view-categories").style.display = "none";
+        }
+    
+        function updateCategory(event) {
+            event.preventDefault(); // Prevent the default form submission
+    
+            // Get the form data
+            const form = document.getElementById("edit-form");
+            const formData = new FormData(form);
+            const id = formData.get("edit_category_id"); // Retrieve the category ID
+            const updatedName = formData.get("edit_category_name"); // Retrieve the updated name
+    
+            // Make the AJAX request to update the category
+            fetch(`{% url 'update_category' 0 %}`.replace('0', id), {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}' // Include CSRF token for security
+                },
+                body: JSON.stringify({
+                    name: updatedName,
+                    description: formData.get("edit_category_description") // Send the updated description too
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.text().then(text => {
+                        console.error('Response error:', text); // Log the error response
+                        throw new Error(text);
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Success:', data);
+                // Optionally update the UI or show a success message here
+                alert('Category updated successfully!');
+                // Reload or update the categories view as needed
+                loadContent('viewCategories'); // Example to show categories again
+            })
+            .catch(error => {
+                console.error('An error occurred:', error);
+                alert('An error occurred while updating the category.');
+            });
+        }
+    
+        function deleteCategory(id) {
+            if (confirm("Are you sure you want to delete this category?")) {
+                fetch(`{% url 'delete_category' 0 %}`.replace('0', id), {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}' // Include CSRF token
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById(`category-row-${id}`).remove(); // Remove the category row from the DOM
+                        alert('Category deleted successfully!');
+                    } else {
+                        alert('Error deleting category.');
+                    }
+                })
+                .catch(error => {
+                    alert('An error occurred: ' + error);
+                });
+            }
+        }
+    </script>
+    
+</body>
+</html>

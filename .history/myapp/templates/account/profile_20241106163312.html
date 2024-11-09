@@ -1,0 +1,199 @@
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f7fa;
+            font-family: 'Arial', sans-serif;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .card {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: #007bff;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .form-control {
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        .btn {
+            font-size: 1rem;
+            padding: 10px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+        .mt-3 {
+            margin-top: 1rem;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.875rem;
+        }
+    </style>
+    <title>User Profile</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">User Profile</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ user.username }}</h5>
+                        <p class="card-text">{{ profile.bio|default:"No bio available." }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <form method="post" enctype="multipart/form-data" class="border p-4 rounded" id="profileForm" onsubmit="return validateForm()">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" id="username" class="form-control" value="{{ user.username }}">
+                        <small class="error" id="username_error"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="first_name">First Name</label>
+                        <input type="text" name="first_name" id="first_name" class="form-control" value="{{ user.first_name }}">
+                        <small class="error" id="first_name_error"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" name="last_name" id="last_name" class="form-control" value="{{ user.last_name }}">
+                        <small class="error" id="last_name_error"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" class="form-control" value="{{ user.email }}">
+                        <small class="error" id="email_error"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="user_type">User Type</label>
+                        <input type="text" name="user_type" id="user_type" class="form-control" value="{{ profile.user_type }}">
+                        <small class="error" id="user_type_error"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Enter a strong password">
+                        <small class="error" id="password_error"></small>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block">Save Changes</button>
+                </form>
+            </div>
+        </div>
+        <a href="{% url 'home' %}" class="btn btn-secondary mt-3">Back to Home</a>
+    </div>
+
+    <script>
+        function validateForm() {
+            let isValid = true;
+
+            // Clear previous error messages
+            document.getElementById("username_error").textContent = "";
+            document.getElementById("first_name_error").textContent = "";
+            document.getElementById("last_name_error").textContent = "";
+            document.getElementById("email_error").textContent = "";
+            document.getElementById("user_type_error").textContent = "";
+            document.getElementById("password_error").textContent = "";
+
+            // Validate Username: Must contain at least 1 uppercase, 1 lowercase, 1 number, and 1 special character
+            let username = document.getElementById("username").value;
+            let usernamePattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            if (!usernamePattern.test(username)) {
+                document.getElementById("username_error").textContent = "Username must contain at least 1 uppercase, 1 lowercase, 1 number, and 1 special character.";
+                isValid = false;
+            }
+
+            // Validate First Name (non-empty)
+            let firstName = document.getElementById("first_name").value;
+            if (firstName.trim() === "") {
+                document.getElementById("first_name_error").textContent = "First Name is required.";
+                isValid = false;
+            }
+
+            // Validate Last Name (non-empty)
+            let lastName = document.getElementById("last_name").value;
+            if (lastName.trim() === "") {
+                document.getElementById("last_name_error").textContent = "Last Name is required.";
+                isValid = false;
+            }
+
+            // Validate Email: Must contain "@gmail.com" or similar
+            let email = document.getElementById("email").value;
+            let emailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+            if (email.trim() === "") {
+                document.getElementById("email_error").textContent = "Email is required.";
+                isValid = false;
+            } else if (!emailPattern.test(email)) {
+                document.getElementById("email_error").textContent = "Please enter a valid email (e.g., example@gmail.com).";
+                isValid = false;
+            }
+
+            // Validate User Type (non-empty)
+            let userType = document.getElementById("user_type").value;
+            if (userType.trim() === "") {
+                document.getElementById("user_type_error").textContent = "User Type is required.";
+                isValid = false;
+            }
+
+            // Validate Password: Must contain at least 1 number, 1 uppercase letter, and 1 special character
+            let password = document.getElementById("password").value;
+            let passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            if (password.trim() === "") {
+                document.getElementById("password_error").textContent = "Password is required.";
+                isValid = false;
+            } else if (!passwordPattern.test(password)) {
+                document.getElementById("password_error").textContent = "Password must contain at least 1 uppercase letter, 1 number, and 1 special character.";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,118 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Articles</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">  <!-- Google Fonts -->
+    <style>
+        /* styles.css */
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #ffeef8; /* Light pink background color */
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px; /* Maximum width for larger screens */
+            margin: 0 auto; /* Center the container */
+            padding: 20px;
+        }
+
+        header {
+            background-color: #ff4d94; /* Pink background */
+            color: white; /* White text */
+            padding: 20px 0;
+            text-align: center; /* Center the text */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Soft shadow for header */
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .articles-list {
+            display: flex;
+            flex-wrap: wrap; /* Allow cards to wrap */
+            gap: 20px; /* Space between articles */
+        }
+
+        .article-card {
+            background-color: white; /* White background for articles */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for cards */
+            padding: 15px;
+            flex: 1 1 300px; /* Flexbox with a minimum width */
+            transition: transform 0.3s; /* Smooth hover effect */
+        }
+
+        .article-card:hover {
+            transform: scale(1.02); /* Slight zoom on hover */
+        }
+
+        .article-content {
+            margin: 15px 0; /* Spacing around content */
+        }
+
+        .read-more {
+            display: inline-block; /* Block display for button */
+            padding: 10px 15px; /* Padding for the button */
+            background-color: #ff4d94; /* Pink background for button */
+            color: white; /* White text */
+            text-decoration: none; /* Remove underline */
+            border-radius: 4px; /* Rounded corners */
+            transition: background-color 0.3s; /* Smooth transition for hover */
+        }
+
+        .read-more:hover {
+            background-color: #ff1a66; /* Darker pink on hover */
+        }
+
+        footer {
+            text-align: center; /* Center the footer text */
+            padding: 20px 0;
+            background-color: #d10047; /* Darker pink background for footer */
+            color: white; /* White text */
+        }
+
+        p {
+            margin: 0; /* Remove default margin */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Articles</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        {% if articles %}
+            <div class="articles-list">
+                {% for article in articles %}
+                    <article class="article-card">
+                        <h2>{{ article.title }}</h2>
+                        <p class="article-content">{{ article.content|truncatewords:30 }}</p>
+                        <a class="read-more" href="{% url 'article_detail' article.id %}">Read more</a>
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No articles found.</p>
+        {% endif %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; {{ year }} Your Website</p>
+        </div>
+    </footer>
+</body>
+</html>

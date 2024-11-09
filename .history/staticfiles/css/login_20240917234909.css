@@ -1,0 +1,124 @@
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.login-box {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 400px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+p {
+    color: #777;
+}
+
+/* Input Fields */
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+/* Button */
+.btn {
+    background: #3498db;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #2980b9;
+}
+
+/* Social Login */
+.social-login {
+    margin-top: 20px;
+}
+
+.social-btn {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 15px;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.social-btn.fb {
+    background: #3b5998;
+}
+
+.social-btn.google {
+    background: #db4437;
+}
+
+/* Error Messages from Django */
+.error-messages {
+    margin-top: 10px;
+    color: red;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .login-box {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .social-btn {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+    }
+}
