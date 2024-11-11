@@ -3,4 +3,4 @@ services:
     name: madison-magazine
     env: docker
     buildCommand: "docker build -t madison-magazine ."
-    startCommand: "python manage.py runserver 0.0.0.0:8000"
+    startCommand: "docker run -d -p 8000:8000 madison-magazine"
