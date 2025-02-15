@@ -11,6 +11,7 @@ from .models import Category, Articles
 from django.shortcuts import get_object_or_404, redirect
 import json
 from django.core.files.storage import FileSystemStorage
+from django.core.exceptions import ValidationError
 
 
 def edit_profile_view(request):
@@ -210,7 +211,7 @@ def update_category(request, category_id):
             return JsonResponse({'success': False, 'error': str(e)}, status=500)
     return JsonResponse({'success': False, 'error': 'Invalid request method'}, status=400)
 
-def add_article(request):
+#def add_article(request):
     if request.method == 'POST':
         title = request.POST['title']
         category_id = request.POST['category']
@@ -244,3 +245,89 @@ def view_articles(request):
 def article_detail(request, id):
     article = Articles.objects.get(id=id)
     return render(request, 'article_detail.html', {'article': article})
+
+def validate_registration_data(username, email, password, confirm_password, first_name, last_name):
+    """Validate user registration data."""
+    if not first_name.isalpha() or not last_name.isalpha():
+        raise ValidationError('First name and last name should only contain alphabets.')
+
+    if password != confirm_password:
+        raise ValidationError('Passwords do not match.')
+
+    if User.objects.filter(username=username).exists():
+        raise ValidationError('Username already exists.')
+
+    if User.objects.filter(email=email).exists():
+        raise ValidationError('Email already exists.')
+
+def register_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+
+        try:
+            validate_registration_data(username, email, password, confirm_password, first_name, last_name)
+
+            # Create the new user
+            user = User.objects.create_user(
+                username=username,
+                email=email,
+                password=password,
+                
+                first_name=first_name,
+                last_name=last_name
+            )
+            user.save()
+
+            messages.success(request, 'Registration successful. You can now log in.')
+            return redirect('login')
+
+        except ValidationError as e:
+            messages.error(request, e.message)
+
+    return render(request, 'account/register.html')
+
+
+def check_username(request):
+    username = request.GET.get('username')
+    if username:
+        exists = User.objects.filter(username=username).exists()
+        return JsonResponse({'exists': exists})
+    return JsonResponse({'exists': False})
+
+def add_article(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        category_id = request.POST.get('category')
+        author = request.POST.get('author')
+        description = request.POST.get('description')
+        image = request.FILES.get('image')
+
+        if not all([title, category_id, author, description, image]):
+            messages.error(request, 'All fields are required.')
+            return redirect('add_article')
+
+        try:
+            category = Category.objects.get(id=category_id)
+        except Category.DoesNotExist:
+            messages.error(request, 'Invalid category selected.')
+            return redirect('add_article')
+
+        article = Articles(
+            title=title,
+            category=category,
+            author=author,
+            description=description,
+            image=image
+        )
+        article.save()
+
+        messages.success(request, 'Article added successfully!')
+        return redirect('view_articles')
+
+    categories = Category.objects.all()
+    return render(request, 'add_article.html', {'categories': categories})

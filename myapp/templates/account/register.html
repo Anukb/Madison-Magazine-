@@ -107,7 +107,7 @@
             </div>
             <div class="input-group">
                 <label for="confirm_password">Confirm Password:</label>
-                <input type="password" name="confirm_password" id="confirm_password" required oninput="validatePassword()">
+                <input type="password" name="confirm_password" id="confirm_password" required oninput="validateConfirmPassword()">
                 <div id="confirm-password-error" class="error-message"></div>
             </div>
             <button type="submit">Register</button>
@@ -123,11 +123,18 @@
             errorDiv.textContent = '';
 
             if (username) {
-                const response = await fetch(`/check_username/?username=${username}`);
-                const exists = await response.json();
+                try {
+                    const response = await fetch(/check_username/?username=${username});
+                    const data = await response.json(); // Parse the JSON response
 
-                if (exists) {
-                    errorDiv.textContent = 'Username already exists.';
+                    if (data.exists) { // Check the 'exists' property in the response
+                        errorDiv.textContent = 'Username already exists.';
+                    } else {
+                        errorDiv.textContent = ''; // Clear error if username is available
+                    }
+                } catch (error) {
+                    console.error('Error checking username:', error);
+                    errorDiv.textContent = 'An error occurred while checking the username.';
                 }
             }
         }
@@ -168,11 +175,19 @@
             const confirmPasswordErrorDiv = document.getElementById('confirm-password-error');
 
             passwordErrorDiv.textContent = '';
-            confirmPasswordErrorDiv.textContent = '';
 
             if (password.length < 8) {
                 passwordErrorDiv.textContent = 'Password must be at least 8 characters.';
             }
+        }
+
+        function validateConfirmPassword() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+            const passwordErrorDiv = document.getElementById('password-error');
+            const confirmPasswordErrorDiv = document.getElementById('confirm-password-error');
+
+            confirmPasswordErrorDiv.textContent = '';
 
             if (password !== confirmPassword) {
                 confirmPasswordErrorDiv.textContent = 'Passwords do not match.';
