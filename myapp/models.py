@@ -39,3 +39,18 @@ class Articles(models.Model):
 
     def __str__(self):
         return self.title
+# class Subscription_Billing(models.Model):
+#     first_name=models.CharField(max_length=100)
+#     last_name=models.CharField(max_length=100)
+#     address=models.CharField(max_length=100)
+#     city=models.CharField(max_length=100)
+#     state=models.CharField(max_length=100)
+#     post_code=models.IntegerField()
+#     country=models.CharField(max_length=100)
+#     phone=models.IntegerField()
+#     mail=models.EmailField(max_length=254, unique=True)
+#     price=models.IntegerField(default=15)
+#     duration=models.CharField(max_length=100)
+
+#     def __str__(self):
+#         return self.first_name

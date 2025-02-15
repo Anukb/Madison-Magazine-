@@ -1,6 +1,0 @@
-services:
-  - type: web
-    name: madison-magazine
-    env: docker
-    buildCommand: "docker build -t madison-magazine ."
-    startCommand: "docker run -d -p 8000:8000 madison-magazine"
